@@ -2,7 +2,7 @@ NOME_ARQUIVO = "clientes.txt"
 clientes = []
 def cadastrar():
     print('cadastrando')
-    nome = input('Digite o nome : ')
+    nome = input('Digite o nome : ').capitalize().strip()
     telefone = input('Digite o telefone : ')
     cliente = [nome, telefone]
     salvarArquivo(cliente)
@@ -21,14 +21,13 @@ def listar():
         print(f'{cliente[0]:10}\t{cliente[1]:10}')
 
 def salvarArquivo(cliente):
-    arquivo = open(NOME_ARQUIVO, "a")
-    arquivo.write(f'{cliente[0]} {cliente[1]}\n')
-    arquivo.close()
+    with open(NOME_ARQUIVO, 'a') as arquivo:
+        arquivo.write(f'{cliente[0]} {cliente[1]}\n')
 
 def buscarClientesArquivo():
-    arquivo = open(NOME_ARQUIVO, "r") 
-    for linha in arquivo:
-        print(linha)
+    with open(NOME_ARQUIVO, "r") as arquivo:
+        for linha in arquivo:
+            print(linha)
 
 while True:
     print('''
