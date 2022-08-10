@@ -22,14 +22,18 @@ def listar():
 
 def salvarArquivo(cliente):
     arquivo = open(NOME_ARQUIVO, "a")
-    arquivo.write(f'{cliente[0]} {cliente[1]}\n')
+    arquivo.write(f'{cliente[0]};{cliente[1]}\n')
     arquivo.close()
 
 def buscarClientesArquivo():
+    clientes = []
     arquivo = open(NOME_ARQUIVO, "r") 
-    for linha in arquivo:
-        print(linha)
-
+    for linha in arquivo: 
+        cliente = linha.strip().split(';')
+        clientes.append(cliente)
+    arquivo.close()
+    return clientes
+      
 while True:
     print('1.cadastrar')
     print('2.listar')
